@@ -4,6 +4,7 @@ create table coffees
     name        varchar(100),
     name_en     varchar(100),
     description text,
+    image_url   text,
     price       int
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
