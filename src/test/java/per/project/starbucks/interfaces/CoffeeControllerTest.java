@@ -65,7 +65,6 @@ public class CoffeeControllerTest {
                 .andExpect(jsonPath("$.englishName").value("SD Brazil Shakerato Affogato"))
                 .andExpect(jsonPath("$.description").value("황설탕, 파인애플..."))
                 .andExpect(jsonPath("$.imageUrl").value("https://cdn.starbucks.com/a1235k2hn15"))
-                .andExpect(jsonPath("$.price").value(7500))
-        ;
+                .andExpect(jsonPath("$.price").value(7500));
     }
 }
