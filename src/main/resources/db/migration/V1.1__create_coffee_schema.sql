@@ -1,11 +1,11 @@
 create table coffees
 (
-    id          bigint auto_increment primary key,
-    name        varchar(100),
-    english_name     varchar(100),
-    description text,
-    image_url   text,
-    price       int
+    id           bigint auto_increment primary key,
+    name         varchar(100),
+    english_name varchar(100),
+    description  text,
+    image_url    text,
+    price        int
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
