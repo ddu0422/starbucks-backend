@@ -2,7 +2,7 @@ create table coffees
 (
     id          bigint auto_increment primary key,
     name        varchar(100),
-    name_en     varchar(100),
+    english_name     varchar(100),
     description text,
     image_url   text,
     price       int
