@@ -8,11 +8,11 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id", callSuper = false)
 @ToString
 @Table(name = "coffees")
 @Entity
-public class Coffee {
+public class Coffee extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
