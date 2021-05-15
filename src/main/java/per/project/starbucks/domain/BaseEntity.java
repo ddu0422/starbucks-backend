@@ -9,15 +9,13 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class BaseEntity {
 
-    @Temporal(TemporalType.DATE)
+
     @Column(name = "createdAt")
-    protected LocalDateTime createdAt;
+    protected LocalDateTime createdAt = LocalDateTime.now();
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "updatedAt")
-    protected LocalDateTime updatedAt;
+    protected LocalDateTime updatedAt = LocalDateTime.now();
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "deletedAt")
     protected LocalDateTime deletedAt;
 }

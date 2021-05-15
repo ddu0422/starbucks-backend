@@ -6,9 +6,9 @@ create table coffees
     description  text,
     image_url    text,
     price        int,
-    createdAt    date,
-    updateAt     date,
-    deletedAt    date
+    created_at   datetime,
+    update_at    datetime,
+    deleted_at   datetime
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
