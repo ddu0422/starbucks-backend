@@ -13,10 +13,14 @@ import per.project.starbucks.services.CoffeeService;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
 import per.project.starbucks.services.dto.CoffeeResponseDto;
 
+import java.util.Arrays;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CoffeeController.class)
 public class CoffeeControllerTest {
@@ -60,11 +64,42 @@ public class CoffeeControllerTest {
         );
 
         actions
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.name").value("SD 브라질 사케라또 아포카토"))
                 .andExpect(jsonPath("$.englishName").value("SD Brazil Shakerato Affogato"))
                 .andExpect(jsonPath("$.description").value("황설탕, 파인애플..."))
                 .andExpect(jsonPath("$.imageUrl").value("https://cdn.starbucks.com/a1235k2hn15"))
                 .andExpect(jsonPath("$.price").value(7500));
+    }
+
+    @Test
+    @DisplayName("커피 목록을 가져온다.")
+    void getCoffees() throws Exception {
+        when(coffeeService.getCoffees()).thenReturn(
+                Arrays.asList(CoffeeResponseDto.builder()
+                                .id(1L)
+                                .name("SD 브라질 사케라또 아포카토")
+                                .englishName("SD Brazil Shakerato Affogato")
+                                .description("황설탕, 파인애플...")
+                                .imageUrl("https://cdn.starbucks.com/a1235k2hn15")
+                                .price(7500)
+                                .build(),
+                        CoffeeResponseDto.builder()
+                                .id(2L)
+                                .name("SD 브라질 사케라또 아포카토 2")
+                                .englishName("SD Brazil Shakerato Affogato 2")
+                                .description("황설탕, 파인애플... 2")
+                                .imageUrl("https://cdn.starbucks.com/a1235k2hn6")
+                                .price(7600)
+                                .build()
+                )
+        );
+
+        ResultActions actions = mockMvc.perform(get("/coffees"));
+
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(2));
     }
 }

@@ -8,6 +8,8 @@ import per.project.starbucks.domain.CoffeeRepository;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
 import per.project.starbucks.services.dto.CoffeeResponseDto;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CoffeeService {
@@ -33,5 +35,9 @@ public class CoffeeService {
                 .imageUrl(coffee.getImageUrl())
                 .price(coffee.getPrice())
                 .build();
+    }
+
+    public List<CoffeeResponseDto> getCoffees() {
+        return null;
     }
 }
