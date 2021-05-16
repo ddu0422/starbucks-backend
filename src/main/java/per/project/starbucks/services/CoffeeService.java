@@ -9,6 +9,7 @@ import per.project.starbucks.services.dto.CoffeeCreationDto;
 import per.project.starbucks.services.dto.CoffeeResponseDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +39,14 @@ public class CoffeeService {
     }
 
     public List<CoffeeResponseDto> getCoffees() {
-        return null;
+        return coffeeRepository.findCoffees().stream().map(
+                coffee -> CoffeeResponseDto.builder()
+                        .name(coffee.getName())
+                        .englishName(coffee.getEnglishName())
+                        .description(coffee.getDescription())
+                        .imageUrl(coffee.getImageUrl())
+                        .price(coffee.getPrice())
+                        .build()
+        ).collect(Collectors.toUnmodifiableList());
     }
 }

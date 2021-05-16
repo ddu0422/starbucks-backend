@@ -10,6 +10,8 @@ import per.project.starbucks.domain.Coffee;
 import per.project.starbucks.domain.CoffeeRepository;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
 
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -25,16 +27,29 @@ public class CoffeeServiceTest {
     @Mock
     private Coffee coffee;
 
+    @Mock
+    private List<Coffee> coffees;
+
     @InjectMocks
     private CoffeeService coffeeService;
 
     @Test
     @DisplayName("커피 정보 저장 성공")
-    void name() {
+    void addCoffee() {
         when(coffeeRepository.save(any())).thenReturn(coffee);
 
         coffeeService.create(coffeeCreationDto);
 
         verify(coffeeRepository, times(1)).save(any());
+    }
+
+    @Test
+    @DisplayName("커피 목록 가져오기 성공")
+    void getCoffees() {
+        when(coffeeRepository.findCoffees()).thenReturn(coffees);
+
+        coffeeService.getCoffees();
+
+        verify(coffeeRepository, times(1)).findCoffees();
     }
 }
