@@ -17,8 +17,7 @@ import java.util.Arrays;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -101,5 +100,46 @@ public class CoffeeControllerTest {
         actions
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2));
+    }
+
+    @Test
+    @DisplayName("커피 정보를 수정한다. (전부 수정하는 경우)")
+    void modifyCoffee() throws Exception {
+        when(coffeeService.modify(any())).thenReturn(
+                CoffeeResponseDto.builder()
+                        .id(1L)
+                        .name("[수정] SD 브라질 사케라또 아포카토")
+                        .englishName("[수정] SD Brazil Shakerato Affogato")
+                        .description("[수정] 황설탕, 파인애플...")
+                        .imageUrl("[수정] https://cdn.starbucks.com/a1235k2hn15")
+                        .price(8000)
+                        .build()
+        );
+
+        String content = objectMapper.writeValueAsString(
+                CoffeeModificationDto.builder()
+                        .name("[수정] SD 브라질 사케라또 아포카토")
+                        .englishName("[수정] SD Brazil Shakerato Affogato")
+                        .description("[수정] 황설탕, 파인애플...")
+                        .imageUrl("[수정] https://cdn.starbucks.com/a1235k2hn15")
+                        .price(8000)
+                        .build()
+        );
+
+        ResultActions actions = mockMvc.perform(
+                patch("/coffees/1")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+        );
+
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("[수정] SD 브라질 사케라또 아포카토"))
+                .andExpect(jsonPath("$.englishName").value("[수정] SD Brazil Shakerato Affogato"))
+                .andExpect(jsonPath("$.description").value("[수정] 황설탕, 파인애플..."))
+                .andExpect(jsonPath("$.imageUrl").value("[수정] https://cdn.starbucks.com/a1235k2hn15"))
+                .andExpect(jsonPath("$.price").value(8000));
     }
 }

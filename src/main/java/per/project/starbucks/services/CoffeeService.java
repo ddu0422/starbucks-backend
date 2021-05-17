@@ -49,4 +49,8 @@ public class CoffeeService {
                         .build()
         ).collect(Collectors.toUnmodifiableList());
     }
+
+    public CoffeeResponseDto modify(Object any) {
+        return null;
+    }
 }

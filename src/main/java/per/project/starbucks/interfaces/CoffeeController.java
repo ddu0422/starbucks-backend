@@ -1,10 +1,7 @@
 package per.project.starbucks.interfaces;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import per.project.starbucks.services.CoffeeService;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
 import per.project.starbucks.services.dto.CoffeeResponseDto;
@@ -25,5 +22,13 @@ public class CoffeeController {
     @GetMapping("/coffees")
     public List<CoffeeResponseDto> getCoffees() {
         return coffeeService.getCoffees();
+    }
+
+    @PatchMapping("/coffees/{id}")
+    public CoffeeResponseDto modify(
+            @PathVariable Long id,
+            @RequestBody CoffeeModificationDto coffeeModificationDto
+    ) {
+        return coffeeService.modify(coffeeModificationDto);
     }
 }
