@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import per.project.starbucks.domain.Coffee;
 import per.project.starbucks.domain.CoffeeRepository;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
+import per.project.starbucks.services.dto.CoffeeModificationDto;
 
 import java.util.List;
 
@@ -22,10 +23,16 @@ public class CoffeeServiceTest {
     private CoffeeCreationDto coffeeCreationDto;
 
     @Mock
+    private CoffeeModificationDto coffeeModificationDto;
+
+    @Mock
     private CoffeeRepository coffeeRepository;
 
     @Mock
     private Coffee coffee;
+
+    @Mock
+    private Coffee modificationCoffee;
 
     @Mock
     private List<Coffee> coffees;
@@ -51,5 +58,17 @@ public class CoffeeServiceTest {
         coffeeService.getCoffees();
 
         verify(coffeeRepository, times(1)).findCoffees();
+    }
+
+    @Test
+    @DisplayName("커피 수정")
+    void name() {
+        when(coffeeRepository.getOne(anyLong())).thenReturn(coffee);
+        when(coffee.change(any())).thenReturn(coffee);
+
+        coffeeService.modify(1L, coffeeModificationDto);
+
+        verify(coffeeRepository, times(1)).getOne(anyLong());
+        verify(coffee, times(1)).change(any());
     }
 }

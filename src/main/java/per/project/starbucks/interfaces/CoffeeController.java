@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import per.project.starbucks.services.CoffeeService;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
+import per.project.starbucks.services.dto.CoffeeModificationDto;
 import per.project.starbucks.services.dto.CoffeeResponseDto;
 
 import java.util.List;

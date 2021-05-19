@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import per.project.starbucks.domain.Coffee;
 import per.project.starbucks.domain.CoffeeRepository;
+import per.project.starbucks.services.dto.CoffeeModificationDto;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
 import per.project.starbucks.services.dto.CoffeeResponseDto;
 
@@ -50,7 +51,25 @@ public class CoffeeService {
         ).collect(Collectors.toUnmodifiableList());
     }
 
-    public CoffeeResponseDto modify(Long id, Object any) {
-        return null;
+    public CoffeeResponseDto modify(Long id, CoffeeModificationDto coffeeModificationDto) {
+        Coffee coffee = coffeeRepository.getOne(id);
+        Coffee modificationCoffee = coffee.change(
+                Coffee.builder()
+                        .name(coffeeModificationDto.getName())
+                        .englishName(coffee.getEnglishName())
+                        .description(coffeeModificationDto.getDescription())
+                        .imageUrl(coffeeModificationDto.getImageUrl())
+                        .price(coffeeModificationDto.getPrice())
+                        .build()
+        );
+
+        return CoffeeResponseDto.builder()
+                .id(modificationCoffee.getId())
+                .name(modificationCoffee.getName())
+                .englishName(modificationCoffee.getEnglishName())
+                .description(modificationCoffee.getDescription())
+                .imageUrl(modificationCoffee.getImageUrl())
+                .price(modificationCoffee.getPrice())
+                .build();
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import per.project.starbucks.services.CoffeeService;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
+import per.project.starbucks.services.dto.CoffeeModificationDto;
 import per.project.starbucks.services.dto.CoffeeResponseDto;
 
 import java.util.Arrays;

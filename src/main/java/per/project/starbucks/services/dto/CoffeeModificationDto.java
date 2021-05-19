@@ -1,4 +1,4 @@
-package per.project.starbucks.interfaces;
+package per.project.starbucks.services.dto;
 
 import lombok.Builder;
 import lombok.Getter;
