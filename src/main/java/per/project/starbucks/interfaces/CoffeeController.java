@@ -29,6 +29,6 @@ public class CoffeeController {
             @PathVariable Long id,
             @RequestBody CoffeeModificationDto coffeeModificationDto
     ) {
-        return coffeeService.modify(coffeeModificationDto);
+        return coffeeService.modify(id, coffeeModificationDto);
     }
 }

@@ -15,7 +15,7 @@ import per.project.starbucks.services.dto.CoffeeResponseDto;
 
 import java.util.Arrays;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -105,7 +105,7 @@ public class CoffeeControllerTest {
     @Test
     @DisplayName("커피 정보를 수정한다. (전부 수정하는 경우)")
     void modifyCoffee() throws Exception {
-        when(coffeeService.modify(any())).thenReturn(
+        when(coffeeService.modify(anyLong(), any())).thenReturn(
                 CoffeeResponseDto.builder()
                         .id(1L)
                         .name("[수정] SD 브라질 사케라또 아포카토")

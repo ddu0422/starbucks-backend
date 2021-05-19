@@ -50,7 +50,7 @@ public class CoffeeService {
         ).collect(Collectors.toUnmodifiableList());
     }
 
-    public CoffeeResponseDto modify(Object any) {
+    public CoffeeResponseDto modify(Long id, Object any) {
         return null;
     }
 }
