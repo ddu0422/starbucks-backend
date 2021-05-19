@@ -32,9 +32,19 @@ public class Coffee extends BaseEntity {
     private String imageUrl;
 
     @Column(name = "price")
-    private int price;
+    private Integer price;
 
     public Coffee change(Coffee coffee) {
+        this.name = getModificationValue(this.name, coffee.name);
+        this.englishName = getModificationValue(this.englishName, coffee.englishName);
+        this.description = getModificationValue(this.description, coffee.description);
+        this.imageUrl = getModificationValue(this.imageUrl, coffee.imageUrl);
+        this.price = getModificationValue(this.price, coffee.price);
+
         return this;
+    }
+
+    private <T> T getModificationValue(T oldValue, T newValue) {
+        return newValue != null ? newValue : oldValue;
     }
 }
