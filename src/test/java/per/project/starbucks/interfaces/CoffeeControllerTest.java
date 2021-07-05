@@ -17,6 +17,7 @@ import per.project.starbucks.services.dto.CoffeeResponseDto;
 import java.util.Arrays;
 
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -182,5 +183,19 @@ public class CoffeeControllerTest {
                 .andExpect(jsonPath("$.description").value("[수정] 황설탕, 파인애플..."))
                 .andExpect(jsonPath("$.imageUrl").value("[수정] https://cdn.starbucks.com/a1235k2hn15"))
                 .andExpect(jsonPath("$.price").value(8000));
+    }
+
+    @Test
+    @DisplayName("특정 커피 정보를 삭제한다.")
+    void name() throws Exception {
+        doNothing().when(coffeeService).delete(anyLong());
+
+        ResultActions actions = mockMvc.perform(
+                delete("/coffees/{id}", 1)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+        );
+
+        actions.andExpect(status().isOk());
     }
 }

@@ -72,4 +72,8 @@ public class CoffeeService {
                 .price(modificationCoffee.getPrice())
                 .build();
     }
+
+    public void delete(Long id) {
+        // TODO
+    }
 }

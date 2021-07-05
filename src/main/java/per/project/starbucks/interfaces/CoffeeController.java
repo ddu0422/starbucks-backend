@@ -1,6 +1,7 @@
 package per.project.starbucks.interfaces;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import per.project.starbucks.services.CoffeeService;
 import per.project.starbucks.services.dto.CoffeeCreationDto;
@@ -31,5 +32,11 @@ public class CoffeeController {
             @RequestBody CoffeeModificationDto coffeeModificationDto
     ) {
         return coffeeService.modify(id, coffeeModificationDto);
+    }
+
+    @DeleteMapping("/coffees/{id}")
+    public ResponseEntity<Long> remove(@PathVariable Long id) {
+        coffeeService.delete(id);
+        return ResponseEntity.ok().build();
     }
 }
