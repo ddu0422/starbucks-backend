@@ -18,13 +18,14 @@ public class CoffeeTest {
                 .price(10000)
                 .build();
 
-        Coffee modificationCoffee = coffee.change(Coffee.builder()
-                .name("수정 이름")
-                .englishName("after name")
-                .description("수정 설명")
-                .imageUrl("수정 url")
-                .price(20000)
-                .build()
+        Coffee modificationCoffee = coffee.change(
+                Coffee.builder()
+                        .name("수정 이름")
+                        .englishName("after name")
+                        .description("수정 설명")
+                        .imageUrl("수정 url")
+                        .price(20000)
+                        .build()
         );
 
         assertEquals("수정 이름", modificationCoffee.getName());
