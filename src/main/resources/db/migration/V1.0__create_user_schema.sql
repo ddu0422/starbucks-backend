@@ -4,6 +4,7 @@ create table users
     email      varchar(50),
     password   varchar(50),
     created_at datetime,
-    updated_at  datetime,
+    updated_at datetime,
     deleted_at datetime
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB
+  DEFAULT CHARSET = utf8mb4;

@@ -7,10 +7,10 @@ create table coffees
     image_url    text,
     price        int,
     created_at   datetime,
-    updated_at    datetime,
+    updated_at   datetime,
     deleted_at   datetime
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8mb4;
 
 create table status
 (
@@ -19,4 +19,4 @@ create table status
     ice       boolean,
     hot       boolean
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8mb4;
