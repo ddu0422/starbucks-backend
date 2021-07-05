@@ -129,7 +129,7 @@ public class CoffeeControllerTest {
         );
 
         ResultActions actions = mockMvc.perform(
-                patch("/coffees/1")
+                patch("/coffees/{id}", 1)
                         .content(content)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
@@ -169,7 +169,7 @@ public class CoffeeControllerTest {
         );
 
         ResultActions actions = mockMvc.perform(
-                patch("/coffees/1")
+                patch("/coffees/{id}", 1)
                         .content(content)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
