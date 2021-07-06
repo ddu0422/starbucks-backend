@@ -61,8 +61,8 @@ public class CoffeeServiceTest {
     }
 
     @Test
-    @DisplayName("커피 수정")
-    void name() {
+    @DisplayName("커피 일부 수정")
+    void modifyCoffee() {
         when(coffeeRepository.getOne(anyLong())).thenReturn(coffee);
         when(coffee.change(any())).thenReturn(coffee);
 
