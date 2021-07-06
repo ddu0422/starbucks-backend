@@ -74,6 +74,6 @@ public class CoffeeService {
     }
 
     public void delete(Long id) {
-        // TODO
+        coffeeRepository.deleteById(id);
     }
 }

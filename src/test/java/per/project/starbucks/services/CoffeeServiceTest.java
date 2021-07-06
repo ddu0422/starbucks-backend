@@ -71,4 +71,14 @@ public class CoffeeServiceTest {
         verify(coffeeRepository, times(1)).getOne(anyLong());
         verify(coffee, times(1)).change(any());
     }
+
+    @Test
+    @DisplayName("특정 커피 삭제")
+    void removeCoffee() {
+        doNothing().when(coffeeRepository).deleteById(anyLong());
+
+        coffeeService.delete(1L);
+
+        verify(coffeeRepository, times(1)).deleteById(anyLong());
+    }
 }
