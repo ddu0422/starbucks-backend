@@ -187,7 +187,7 @@ public class CoffeeControllerTest {
 
     @Test
     @DisplayName("특정 커피 정보를 삭제한다.")
-    void name() throws Exception {
+    void removeCoffee() throws Exception {
         doNothing().when(coffeeService).delete(anyLong());
 
         ResultActions actions = mockMvc.perform(
